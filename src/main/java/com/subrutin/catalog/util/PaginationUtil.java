@@ -1,10 +1,9 @@
 package com.subrutin.catalog.util;
 
-import java.util.List;
-
+import com.subrutin.catalog.dto.ResultPageResponseDTO;
 import org.springframework.data.domain.Sort;
 
-import com.subrutin.catalog.dto.ResultPageResponseDTO;
+import java.util.List;
 
 public class PaginationUtil {
 	

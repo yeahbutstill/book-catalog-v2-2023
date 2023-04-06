@@ -1,25 +1,19 @@
 package com.subrutin.catalog.domain;
 
-import java.time.LocalDate;
-import java.util.List;
-
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.io.Serial;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -30,16 +24,14 @@ import lombok.NoArgsConstructor;
 //@DynamicUpdate
 //@SQLDelete(sql = "UPDATE author SET deleted = true WHERE id = ?")
 //@Where(clause = "deleted=false")
-public class Author extends AbstractBaseEntity{
-	
+public class Author extends AbstractBaseEntity {
+
 	//postgre-> bigserial
 	//mysql->autoincrement
 	//strategy -> identity -> cons: batch insert disabled
 	//batch insert -> stored producured
 	
-	/**
-	 * 
-	 */
+	@Serial
 	private static final long serialVersionUID = -139238051267804978L;
 
 	//strategy sequence -> pros: enable batch insert
@@ -55,7 +47,19 @@ public class Author extends AbstractBaseEntity{
 	private LocalDate birthDate;
 	
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+	@ToString.Exclude
 	private List<Address> addresses;
-	
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+		Author author = (Author) o;
+		return getId() != null && Objects.equals(getId(), author.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

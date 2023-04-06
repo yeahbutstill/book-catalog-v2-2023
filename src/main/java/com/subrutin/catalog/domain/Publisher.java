@@ -1,29 +1,28 @@
 package com.subrutin.catalog.domain;
 
-import java.io.Serializable;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import java.io.Serial;
 import java.util.List;
+import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "publisher")
-public class Publisher extends AbstractBaseEntity {/**
-	 * 
-	 */
+public class Publisher extends AbstractBaseEntity {
+
+	@Serial
 	private static final long serialVersionUID = -3729325249054365078L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publisher_generator")
-	@SequenceGenerator(name = "publisher_generator", sequenceName = "publisher_id_seq", allocationSize = 1, initialValue = 1)
+	@SequenceGenerator(name = "publisher_generator", sequenceName = "publisher_id_seq", allocationSize = 1)
 	private Long id;
 	
 	@Column(name = "name", nullable = false)
@@ -36,6 +35,19 @@ public class Publisher extends AbstractBaseEntity {/**
 	private String address;
 	
 	@OneToMany(mappedBy = "publisher")
+	@ToString.Exclude
 	private List<Book> books;
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+		Publisher publisher = (Publisher) o;
+		return getId() != null && Objects.equals(getId(), publisher.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

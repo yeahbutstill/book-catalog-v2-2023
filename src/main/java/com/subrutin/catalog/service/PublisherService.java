@@ -1,11 +1,7 @@
 package com.subrutin.catalog.service;
 
 import com.subrutin.catalog.domain.Publisher;
-import com.subrutin.catalog.dto.PublisherCreateRequestDTO;
-import com.subrutin.catalog.dto.PublisherListResponseDTO;
-import com.subrutin.catalog.dto.PublisherResponseDTO;
-import com.subrutin.catalog.dto.PublisherUpdateRequestDTO;
-import com.subrutin.catalog.dto.ResultPageResponseDTO;
+import com.subrutin.catalog.dto.*;
 
 public interface PublisherService {
 	

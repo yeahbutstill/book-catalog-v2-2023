@@ -1,17 +1,15 @@
 package com.subrutin.catalog.service.impl;
 
+import com.subrutin.catalog.dto.UserDetailResponseDTO;
+import com.subrutin.catalog.exception.ResourceNotFoundException;
+import com.subrutin.catalog.repository.AppUserRepository;
+import com.subrutin.catalog.service.AppUserService;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import com.subrutin.catalog.domain.UserDetailResponseDTO;
-import com.subrutin.catalog.exception.ResourceNotFoundException;
-import com.subrutin.catalog.repository.AppUserRepository;
-import com.subrutin.catalog.service.AppUserService;
-
-import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service

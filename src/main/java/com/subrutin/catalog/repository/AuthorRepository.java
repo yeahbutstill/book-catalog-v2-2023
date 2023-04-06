@@ -1,13 +1,12 @@
 package com.subrutin.catalog.repository;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.subrutin.catalog.domain.Author;
+import com.subrutin.catalog.dto.AuthorQueryDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.subrutin.catalog.domain.Author;
-import com.subrutin.catalog.dto.AuthorQueryDTO;
+import java.util.List;
+import java.util.Optional;
 
 public interface AuthorRepository extends JpaRepository<Author, Long> {
 

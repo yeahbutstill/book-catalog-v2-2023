@@ -1,10 +1,9 @@
 package com.subrutin.catalog.repository;
 
-import java.util.Optional;
-
+import com.subrutin.catalog.domain.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.subrutin.catalog.domain.AppUser;
+import java.util.Optional;
 
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 	

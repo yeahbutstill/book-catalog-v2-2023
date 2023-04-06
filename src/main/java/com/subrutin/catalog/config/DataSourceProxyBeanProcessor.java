@@ -1,9 +1,7 @@
 package com.subrutin.catalog.config;
 
-import java.lang.reflect.Method;
-
-import javax.sql.DataSource;
-
+import net.ttddyy.dsproxy.listener.logging.SLF4JLogLevel;
+import net.ttddyy.dsproxy.support.ProxyDataSourceBuilder;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.framework.ProxyFactory;
@@ -12,8 +10,8 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
-import net.ttddyy.dsproxy.listener.logging.SLF4JLogLevel;
-import net.ttddyy.dsproxy.support.ProxyDataSourceBuilder;
+import javax.sql.DataSource;
+import java.lang.reflect.Method;
 
 @Component
 public class DataSourceProxyBeanProcessor implements BeanPostProcessor{

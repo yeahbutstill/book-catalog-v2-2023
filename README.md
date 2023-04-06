@@ -1,9 +1,9 @@
 ## Setup run container
 
 ```shell
-docker run --rm \
+docker run --rm \                              
 --name book_catalog-db \
--e POSTGRES_DB=book_catalog \  
+-e POSTGRES_DB=book_catalog \
 -e POSTGRES_USER=subrutin \
 -e POSTGRES_PASSWORD=subrutin \
 -e PGDATA=/var/lib/postgresql/data/pgdata \

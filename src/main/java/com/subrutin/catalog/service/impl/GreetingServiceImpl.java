@@ -1,14 +1,13 @@
 package com.subrutin.catalog.service.impl;
 
-import java.util.TimeZone;
-
+import com.subrutin.catalog.config.ApplicationProperties;
+import com.subrutin.catalog.config.CloudProperties;
+import com.subrutin.catalog.service.GreetingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.subrutin.catalog.config.ApplicationProperties;
-import com.subrutin.catalog.config.CloudProperties;
-import com.subrutin.catalog.service.GreetingService;
+import java.util.TimeZone;
 
 @Service
 public class GreetingServiceImpl implements GreetingService {
