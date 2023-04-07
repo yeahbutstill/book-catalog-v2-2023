@@ -1,7 +1,10 @@
 package com.subrutin.catalog.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import java.io.Serial;
@@ -11,8 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "book")
 public class Book extends AbstractBaseEntity {

@@ -14,13 +14,12 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/v1/book")
 public class BookResource {
 
 	private final BookService bookService;
 
 	//nama yang salah /get-book/{bookId}
-	@GetMapping("/{bookId}")
+	@GetMapping("/v1/book/{bookId}")
 	public ResponseEntity<BookDetailResponseDTO> findBookDetail(@PathVariable("bookId") String id) {
 		StopWatch stopWatch = new StopWatch();
 		log.info("start findBookDetail "+id);
@@ -33,7 +32,7 @@ public class BookResource {
 	}
 	
 	//nama yang salah /save-book /create-book
-	@PostMapping("/create")
+	@PostMapping("/v1/book")
 	public ResponseEntity<Void> createANewBook(@RequestBody BookCreateRequestDTO dto){
 		bookService.createNewBook(dto);
 		return ResponseEntity.created(URI.create("/book")).build();
@@ -45,7 +44,7 @@ public class BookResource {
 	//2. nama penerbit //table publisher
 	//3. nama penulis //table author
 	
-	@GetMapping("/list")
+	@GetMapping("/v2/book")
 	public ResponseEntity<ResultPageResponseDTO<BookListResponseDTO>> findBookList(
 			@RequestParam(name = "page", required = true, defaultValue = "0") Integer page, 
 			@RequestParam(name = "limit", required = true, defaultValue = "10") Integer limit, 
@@ -59,14 +58,14 @@ public class BookResource {
 	}
 	
 	
-	@GetMapping("/detail")
+	@GetMapping("/v1/book")
 	public ResponseEntity<List<BookDetailResponseDTO>> findBookList(){
 		return ResponseEntity.ok().body(bookService.findBookListDetail());
 		
 	}
 	
 	//PUT /book
-	@PutMapping("/{bookId}")
+	@PutMapping("/v1/book/{bookId}")
 	public ResponseEntity<Void> updateBook(@PathVariable("bookId") Long bookId, 
 			@RequestBody BookUpdateRequestDTO dto){
 		bookService.updateBook(bookId, dto);
@@ -74,7 +73,7 @@ public class BookResource {
 	}
 	
 	//DELETE /book
-	@DeleteMapping("/{bookId}")
+	@DeleteMapping("/v1/book/{bookId}")
 	public ResponseEntity<Void> deleteBook(@PathVariable("bookId") Long bookId){
 		bookService.deleteBook(bookId);
 		return ResponseEntity.ok().build();

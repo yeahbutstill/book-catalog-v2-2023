@@ -15,18 +15,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 @AllArgsConstructor
-public class UsernamePasswordAuthFailureHandler implements AuthenticationFailureHandler {
+public class UsernamePasswordAuthFailureHandler implements AuthenticationFailureHandler{
 
-    private final ObjectMapper objectMapper;
+	private final ObjectMapper objectMapper;
+	
+	@Override
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException exception) throws IOException, ServletException {
+		Map<String, String> resultMap = new HashMap<>();
+		resultMap.put("result", "Authentication Failed");
+		response.setStatus(HttpStatus.UNAUTHORIZED.value());
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		objectMapper.writeValue(response.getWriter(), resultMap);
+	}
 
-
-    @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                        AuthenticationException exception) throws IOException, ServletException {
-        Map<String, String> resultMap = new HashMap<>();
-        resultMap.put("message", exception.getMessage());
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        objectMapper.writeValue(response.getWriter(), resultMap);
-    }
 }

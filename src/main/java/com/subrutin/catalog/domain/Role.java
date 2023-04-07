@@ -1,7 +1,10 @@
 package com.subrutin.catalog.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -11,8 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "role")
 @Entity
 public class Role implements GrantedAuthority{

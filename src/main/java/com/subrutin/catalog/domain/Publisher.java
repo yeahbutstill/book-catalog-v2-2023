@@ -1,7 +1,10 @@
 package com.subrutin.catalog.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import java.io.Serial;
@@ -11,8 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "publisher")
 public class Publisher extends AbstractBaseEntity {
@@ -22,7 +24,7 @@ public class Publisher extends AbstractBaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publisher_generator")
-	@SequenceGenerator(name = "publisher_generator", sequenceName = "publisher_id_seq", allocationSize = 1)
+	@SequenceGenerator(name = "publisher_generator", sequenceName = "publisher_id_seq", allocationSize = 1, initialValue = 1)
 	private Long id;
 	
 	@Column(name = "name", nullable = false)

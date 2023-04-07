@@ -1,6 +1,5 @@
 package com.subrutin.catalog.dto;
 
-import jakarta.validation.constraints.NotBlank;
+public record LoginRequestDTO(String username, String password) {
 
-public record LoginRequestDTO(@NotBlank String username, @NotBlank String password) {
 }

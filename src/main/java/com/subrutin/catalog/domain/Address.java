@@ -2,11 +2,12 @@ package com.subrutin.catalog.domain;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -14,13 +15,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
-public class Address implements Serializable {
-
-	@Serial
-	private static final long serialVersionUID = 7035215162449455935L;
-
+@RequiredArgsConstructor
+public class Address {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

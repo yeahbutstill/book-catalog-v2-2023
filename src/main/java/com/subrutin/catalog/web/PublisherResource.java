@@ -20,20 +20,19 @@ import java.net.URI;
 @Validated
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/v1/publisher")
 public class PublisherResource {
 
 	private final PublisherService publisherService;
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/create")
+	@PostMapping("/v1/publisher")
 	public ResponseEntity<Void> createNewPublisher(@RequestBody @Valid PublisherCreateRequestDTO dto) {
 		publisherService.createPublisher(dto);
 		return ResponseEntity.created(URI.create("/v1/publisher")).build();
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/{publisherId}")
+	@PutMapping("/v1/publisher/{publisherId}")
 	public ResponseEntity<Void> updatePublisher(@PathVariable 
 			@Size(max = 36, min = 36, message = "publiher.id.not.uuid") String publisherId,
 			@RequestBody @Valid PublisherUpdateRequestDTO dto) {
@@ -43,7 +42,7 @@ public class PublisherResource {
 	
 	@PreAuthorize("isAuthenticated()")
 	@LogThisMethod
-	@GetMapping("/list")
+	@GetMapping("/v1/publisher")
 	public ResponseEntity<ResultPageResponseDTO<PublisherListResponseDTO>> findPublisherList(
 			@RequestParam(name = "pages", required = true, defaultValue = "0") Integer pages, 
 			@RequestParam(name = "limit", required = true, defaultValue = "10") Integer limit,

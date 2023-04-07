@@ -4,7 +4,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Index;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,8 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @MappedSuperclass
 @Table(indexes = {
 		@Index(name="uk_secure_id", columnList = "secure_id")

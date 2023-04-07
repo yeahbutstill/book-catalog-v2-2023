@@ -1,7 +1,10 @@
 package com.subrutin.catalog.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -14,8 +17,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 //@DynamicUpdate
 @SQLDelete(sql = "UPDATE author SET deleted = true WHERE id = ?")
@@ -24,8 +26,8 @@ import java.util.Objects;
 //@DynamicUpdate
 //@SQLDelete(sql = "UPDATE author SET deleted = true WHERE id = ?")
 //@Where(clause = "deleted=false")
-public class Author extends AbstractBaseEntity {
-
+public class Author extends AbstractBaseEntity{
+	
 	//postgre-> bigserial
 	//mysql->autoincrement
 	//strategy -> identity -> cons: batch insert disabled
