@@ -1,29 +1,24 @@
 package com.subrutin.catalog.domain;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Index;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.UUID;
-
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@Data
 @MappedSuperclass
 @Table(indexes = {
 		@Index(name="uk_secure_id", columnList = "secure_id")
 })
 public abstract class AbstractBaseEntity implements Serializable {
 
-	@Serial
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -2119574796403647424L;
 
 	@Column(name = "secure_id", nullable = false, unique = true)
@@ -31,6 +26,5 @@ public abstract class AbstractBaseEntity implements Serializable {
 	
 	@Column(name="deleted", columnDefinition = "boolean default false")
 	private boolean deleted;
-
 }
 

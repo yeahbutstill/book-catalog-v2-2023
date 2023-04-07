@@ -1,25 +1,24 @@
 package com.subrutin.catalog.domain;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.Hibernate;
-
-import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "publisher")
-public class Publisher extends AbstractBaseEntity {
-
-	@Serial
+public class Publisher extends AbstractBaseEntity {/**
+	 * 
+	 */
 	private static final long serialVersionUID = -3729325249054365078L;
 	
 	@Id
@@ -37,19 +36,6 @@ public class Publisher extends AbstractBaseEntity {
 	private String address;
 	
 	@OneToMany(mappedBy = "publisher")
-	@ToString.Exclude
 	private List<Book> books;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		Publisher publisher = (Publisher) o;
-		return getId() != null && Objects.equals(getId(), publisher.getId());
-	}
-
-	@Override
-	public int hashCode() {
-		return getClass().hashCode();
-	}
 }

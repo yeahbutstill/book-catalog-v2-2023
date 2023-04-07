@@ -1,28 +1,40 @@
 package com.subrutin.catalog.service.impl;
 
-import com.subrutin.catalog.domain.Author;
-import com.subrutin.catalog.domain.Book;
-import com.subrutin.catalog.domain.Category;
-import com.subrutin.catalog.domain.Publisher;
-import com.subrutin.catalog.dto.*;
-import com.subrutin.catalog.exception.BadRequestException;
-import com.subrutin.catalog.repository.BookRepository;
-import com.subrutin.catalog.service.AuthorService;
-import com.subrutin.catalog.service.BookService;
-import com.subrutin.catalog.service.CategoryService;
-import com.subrutin.catalog.service.PublisherService;
-import com.subrutin.catalog.util.PaginationUtil;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import com.subrutin.catalog.domain.Author;
+import com.subrutin.catalog.domain.Book;
+import com.subrutin.catalog.domain.Category;
+import com.subrutin.catalog.domain.Publisher;
+import com.subrutin.catalog.dto.BookCreateRequestDTO;
+import com.subrutin.catalog.dto.BookDetailResponseDTO;
+import com.subrutin.catalog.dto.BookListResponseDTO;
+import com.subrutin.catalog.dto.BookQueryDTO;
+import com.subrutin.catalog.dto.BookUpdateRequestDTO;
+import com.subrutin.catalog.dto.ResultPageResponseDTO;
+import com.subrutin.catalog.exception.BadRequestException;
+import com.subrutin.catalog.repository.AuthorRepository;
+import com.subrutin.catalog.repository.BookRepository;
+import com.subrutin.catalog.service.AuthorService;
+import com.subrutin.catalog.service.BookService;
+import com.subrutin.catalog.service.CategoryService;
+import com.subrutin.catalog.service.PublisherService;
+import com.subrutin.catalog.util.PaginationUtil;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @AllArgsConstructor

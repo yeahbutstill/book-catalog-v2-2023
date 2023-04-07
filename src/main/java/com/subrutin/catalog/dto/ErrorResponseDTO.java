@@ -1,12 +1,14 @@
 package com.subrutin.catalog.dto;
 
-import com.subrutin.catalog.enums.ErrorCode;
-import lombok.Data;
-import org.springframework.http.HttpStatus;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
+
+import com.subrutin.catalog.enums.ErrorCode;
+
+import lombok.Data;
 
 @Data
 public class ErrorResponseDTO implements Serializable{

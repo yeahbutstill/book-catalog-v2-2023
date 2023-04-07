@@ -1,35 +1,34 @@
 package com.subrutin.catalog.security.handler;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.subrutin.catalog.security.model.impl.AccessJWTToken;
-import com.subrutin.catalog.security.util.JWTTokenFactory;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.subrutin.catalog.security.model.AccessJWTToken;
+import com.subrutin.catalog.security.util.JWTTokenFactory;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class UsernamePasswordAuthSucessHandler implements AuthenticationSuccessHandler {
-
+	
 	private final ObjectMapper objectMapper;
+	
 	private final JWTTokenFactory jwtTokenFactory;
-
-	public UsernamePasswordAuthSucessHandler(ObjectMapper objectMapper, JWTTokenFactory jwtTokenFactory) {
-		this.objectMapper = objectMapper;
-		this.jwtTokenFactory = jwtTokenFactory;
-	}
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		AccessJWTToken token = jwtTokenFactory.createAccessJWTToken(userDetails.getUsername(), userDetails.getAuthorities());
 		Map<String, String> resultMap = new HashMap<>();
@@ -37,6 +36,7 @@ public class UsernamePasswordAuthSucessHandler implements AuthenticationSuccessH
 		response.setStatus(HttpStatus.OK.value());
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		objectMapper.writeValue(response.getWriter(), resultMap);
+		
 		
 	}
 

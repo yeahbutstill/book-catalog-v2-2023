@@ -1,15 +1,17 @@
 package com.subrutin.catalog.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.subrutin.catalog.security.util.JWTTokenFactory;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
+import java.security.Key;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.security.Key;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.subrutin.catalog.security.util.JWTTokenFactory;
+
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 
 @Configuration
 public class AppConfig {

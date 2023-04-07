@@ -1,6 +1,5 @@
-package com.subrutin.catalog.security.model.impl;
+package com.subrutin.catalog.security.model;
 
-import com.subrutin.catalog.security.model.Token;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +9,7 @@ import lombok.Data;
 public class AccessJWTToken implements Token {
 	
 	private final String rawToken;
+	
 	private Claims claims;
 
 	@Override

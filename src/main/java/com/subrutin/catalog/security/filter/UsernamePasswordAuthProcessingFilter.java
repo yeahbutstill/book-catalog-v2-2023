@@ -1,12 +1,7 @@
 package com.subrutin.catalog.security.filter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.subrutin.catalog.dto.LoginRequestDTO;
-import com.subrutin.catalog.exception.BadRequestException;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,12 +10,21 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.subrutin.catalog.dto.LoginRequestDTO;
+import com.subrutin.catalog.exception.BadRequestException;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class UsernamePasswordAuthProcessingFilter extends AbstractAuthenticationProcessingFilter{
 	
 	private final ObjectMapper objectMapper;
+	
 	private final AuthenticationSuccessHandler successHandler;
+	
 	private final AuthenticationFailureHandler failureHandler;
 
 	public UsernamePasswordAuthProcessingFilter(String defaultFilterProcessesUrl, ObjectMapper objectMapper, AuthenticationSuccessHandler successHandler, 

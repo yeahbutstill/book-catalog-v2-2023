@@ -1,28 +1,32 @@
 package com.subrutin.catalog.domain;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.Hibernate;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serial;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@Data
 @Entity
 @Table(name = "app_user", indexes = { @Index(name = "uk_username", columnList = "username") })
 public class AppUser extends AbstractBaseEntity implements UserDetails {
 
-	@Serial
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 3423593371835697230L;
 
 	@Id
@@ -69,16 +73,4 @@ public class AppUser extends AbstractBaseEntity implements UserDetails {
 		return true;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		AppUser appUser = (AppUser) o;
-		return getId() != null && Objects.equals(getId(), appUser.getId());
-	}
-
-	@Override
-	public int hashCode() {
-		return getClass().hashCode();
-	}
 }

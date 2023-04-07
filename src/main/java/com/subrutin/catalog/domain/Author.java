@@ -1,23 +1,27 @@
 package com.subrutin.catalog.domain;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.Hibernate;
+import java.time.LocalDate;
+import java.util.List;
+
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import java.io.Serial;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 //@DynamicUpdate
 @SQLDelete(sql = "UPDATE author SET deleted = true WHERE id = ?")
@@ -33,7 +37,9 @@ public class Author extends AbstractBaseEntity{
 	//strategy -> identity -> cons: batch insert disabled
 	//batch insert -> stored producured
 	
-	@Serial
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -139238051267804978L;
 
 	//strategy sequence -> pros: enable batch insert
@@ -49,19 +55,7 @@ public class Author extends AbstractBaseEntity{
 	private LocalDate birthDate;
 	
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-	@ToString.Exclude
 	private List<Address> addresses;
+	
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		Author author = (Author) o;
-		return getId() != null && Objects.equals(getId(), author.getId());
-	}
-
-	@Override
-	public int hashCode() {
-		return getClass().hashCode();
-	}
 }

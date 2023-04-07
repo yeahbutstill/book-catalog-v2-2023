@@ -1,8 +1,12 @@
 package com.subrutin.catalog.service;
 
-import com.subrutin.catalog.dto.*;
-
 import java.util.List;
+
+import com.subrutin.catalog.dto.BookCreateRequestDTO;
+import com.subrutin.catalog.dto.BookDetailResponseDTO;
+import com.subrutin.catalog.dto.BookListResponseDTO;
+import com.subrutin.catalog.dto.BookUpdateRequestDTO;
+import com.subrutin.catalog.dto.ResultPageResponseDTO;
 
 public interface BookService {
 	
